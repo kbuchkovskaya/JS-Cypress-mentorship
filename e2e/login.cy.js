@@ -1,5 +1,6 @@
 import LoginPage from "../support/pageObjects/LoginPage"
 
+//test
 describe ('log in page', () => {
   const loginPage = new LoginPage()
 
