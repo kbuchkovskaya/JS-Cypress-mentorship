@@ -1,0 +1,9 @@
+{
+  "firstName" : "Kate",
+  "lastName" : "Buch",
+  "username" : "kbuch",
+  "incorrectUsername" : "!@kate123",
+  "email" : "kate123@gmail.com",
+  "password" : "kate12345",
+  "shortPassword" : "1234567"
+}
