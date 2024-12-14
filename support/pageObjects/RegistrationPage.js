@@ -57,12 +57,12 @@ class RegistrationPage {
         this.elements.registerButton().click()
     }
 
-    getUserNameError(error){
-        return this.elements.userNameInput().nextUntil('*:contains("' + error + '")')
+    getUserNameValidation(validation){
+        return this.elements.userNameInput().nextUntil(`*:contains("${validation}")`)
     }
 
-    getPasswordError(error){
-        return this.elements.passwordInput().nextUntil('*:contains("' + error + '")')
+    getPasswordValidation(validation){
+        return this.elements.passwordInput().nextUntil(`*:contains("${validation}")`)
     }
 
 
