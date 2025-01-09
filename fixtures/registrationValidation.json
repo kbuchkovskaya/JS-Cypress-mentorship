@@ -5,5 +5,6 @@
     "alphanumericalCharsUsername" : "Please create a username with only alphanumeric characters.",
     "requiredField" : "This field is required.",
     "invalidemail": "Please provide a valid email address.",
-    "shortPassword": "Minimum length is 8 characters."
+    "shortPassword": "Minimum length is 8 characters.",
+    "invalidUserData"  : "Invalid login or password."
 }
