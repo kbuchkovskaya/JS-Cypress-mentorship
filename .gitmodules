@@ -1,0 +1,3 @@
+[submodule "cypress"]
+	path = cypress
+	url = git@github.com:kbuchkovskaya/JS-Cypress-mentorship.git
