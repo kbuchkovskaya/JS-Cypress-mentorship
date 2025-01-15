@@ -1,17 +1,7 @@
-import UserHelper from "../../support/modules/UserHelper"
 import LoginPage from "../../support/pageObjects/LoginPage"
 
 describe ('log in page', () => {
   const loginPage = new LoginPage()
-  const userHelper = new UserHelper()
-  let userModel
-  
-  before(() => {
-    return userHelper.readFromFile('userInfo.json') // Read the file
-    .then((user) => {
-      userModel = user;
-    })    
-  })
 
   beforeEach(() => {
     loginPage.visit()
@@ -35,6 +25,7 @@ describe ('log in page', () => {
 
   it('register new user', () => {
     loginPage.registerNewUser()
+    cy.url().should('eq', 'https://gitlab.testautomate.me/users/sign_up')
   })
 
 })

@@ -1,47 +1,17 @@
 import truncate from 'truncate'
 import RegistrationPage from '../../support/pageObjects/RegistrationPage'
-import UserHelper from '../../support/modules/UserHelper'
-import UserModel from '../../support/modules/UserModel'
-
 
 describe('user registration', () => {
     const registrationPage = new RegistrationPage()
-    const userHelper = new UserHelper()
-    let userModel
+    let userModel 
 
     before(() => {
-        cy.task('clearFileContent', { filename: 'userInfo.json' }).then((message) => {
-            cy.log(message);
-        })
-
-        let userModel1 = new UserModel()
-        const userData = JSON.stringify(userModel1, null, 1);  // Stringify data
-        userHelper.writeToFile(userData);  // Write to file
-        cy.wait(1000)
-
-        return userHelper.readFromFile('userInfo.json') // Read the file
-        .then((user) => {
-          userModel = user;
-        })
+        //cy.createUserData()
+        cy.readUserData()
+            .then((user) => {
+                userModel = user
+            })
     })
-
-    /*after(() => {
-        cy.task('clearFileContent', { filename: 'userInfo.json' }).then((message) => {
-            cy.log(message);
-        })
-
-    })*/
-
-    /*it('Should verify file creation', () => {
-        cy.fixture('userInfo.json')
-            .should('not.be.empty')  // Ensure the file is not empty
-            .then((data) => {
-                expect(data.firstName).to.include('Name');
-                expect(data.lastName).to.include('LastName');
-                expect(data.email).to.include('@example.com');
-            });
-    });*/
-
 
     beforeEach(() => {
         registrationPage.visit()
@@ -59,12 +29,7 @@ describe('user registration', () => {
     })
 
     it('user registered succesfully', () => {
-        registrationPage.fillFirstName(userModel.firstName)
-        registrationPage.fillLastName(userModel.lastName)
-        registrationPage.fillUsername(userModel.userName)
-        registrationPage.fillEmail(userModel.email)
-        registrationPage.fillPassword(userModel.password)
-        registrationPage.registerAction()
+        cy.userRegistration()
         cy.url().should('include', '/sign_up/welcome')
     })
 
@@ -88,12 +53,13 @@ describe('user registration', () => {
         })
     })
 
-    /*it('username only alphanumerical', () => {
+    it('username only alphanumerical', () => {
         registrationPage.fillUsername(`!@#${userModel.userName}`)
         cy.fixture('registrationValidation').then((validationMessage) => {
             registrationPage.getUserNameInput().should('have.attr', 'title', validationMessage.alphanumericalCharsUsername).and('not.have.attr', 'class' , ':contains("hidden")')
             registrationPage.getUserNameInput().clear()
             registrationPage.getUserNameInput().should('have.attr', 'title', validationMessage.shortUsername)
-        })*/
+        })
+    })
 
 })

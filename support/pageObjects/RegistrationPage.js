@@ -60,11 +60,12 @@ class RegistrationPage {
     getUserNameValidation(validation){
         return this.elements.userNameInput().nextUntil(`*:contains("${validation}")`)
     }
-
+    
+/*
     getPasswordValidation(validation){
         return this.elements.passwordInput().nextUntil(`*:contains("${validation}")`)
     }
-
+*/
 
 }
 
