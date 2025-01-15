@@ -1,0 +1,10 @@
+{
+    "shortUsername" : "Username is too short (minimum is 2 characters).",
+    "takenUsername" : "Username is already taken.",
+    "availableUsername" : "Username is available.",
+    "alphanumericalCharsUsername" : "Please create a username with only alphanumeric characters.",
+    "requiredField" : "This field is required.",
+    "invalidemail": "Please provide a valid email address.",
+    "shortPassword": "Minimum length is 8 characters.",
+    "invalidUserData"  : "Invalid login or password."
+}
