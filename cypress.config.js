@@ -1,7 +1,7 @@
-const fs = require('fs');
-const { defineConfig } = require("cypress");
+import { writeFile, readFile } from 'fs';
+import { defineConfig } from "cypress";
 
-module.exports = defineConfig({
+export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       // Register custom tasks
@@ -10,7 +10,7 @@ module.exports = defineConfig({
         writeFileToFixtures({ filename, content }) {
           const filePath = `cypress/fixtures/${filename}`;
           return new Promise((resolve, reject) => {
-            fs.writeFile(filePath, content, (err) => {
+            writeFile(filePath, content, (err) => {
               if (err) {
                 return reject(err);
               }
@@ -23,7 +23,7 @@ module.exports = defineConfig({
         readFileFromFixtures({ filename }) {
           const filePath = `cypress/fixtures/${filename}`;
           return new Promise((resolve, reject) => {
-            fs.readFile(filePath, 'utf8', (err, data) => {
+            readFile(filePath, 'utf8', (err, data) => {
               if (err) {
                 return reject(err);
               }
@@ -36,7 +36,7 @@ module.exports = defineConfig({
         clearFileContent({ filename }) {
           const filePath = `cypress/fixtures/${filename}`;
           return new Promise((resolve, reject) => {
-            fs.writeFile(filePath, '', (err) => { // Overwrite with empty content
+            writeFile(filePath, '', (err) => { // Overwrite with empty content
               if (err) {
                 return reject(err);
               }
