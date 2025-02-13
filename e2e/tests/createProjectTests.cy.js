@@ -1,21 +1,22 @@
-import CreateNewProjectPage from "../../support/pageObjects/CreateNewProjectPage"
+import CreateNewProjectPage from "../../support/pageObjects/pages/CreateNewProjectPage"
+import ProjectDetailsPage from "../../support/pageObjects/pages/ProjectDetailsPage";
 
 const { faker } = require('@faker-js/faker');
 
 describe('create project tests', () => {
 
     const createNewProjectPage = new CreateNewProjectPage()
+    const projectDetailsPage = new ProjectDetailsPage()
 
     let projectName = faker.lorem.word()
 
     before(() => {
-        cy.userRegistration()
-        cy.welcomePageVerification()
-        cy.signOut()
+        cy.сreateApiUser('userInfo.json')
+        
     })
 
     beforeEach(() => {
-        cy.loginUser()
+        cy.loginUser('userInfo.json')
         createNewProjectPage.visit()
         createNewProjectPage.openCreateBlankProjectWizard()
     })
@@ -27,9 +28,11 @@ describe('create project tests', () => {
     it('create new project with visibility level = private', () => {
         createNewProjectPage.enterProjectName(projectName)
         createNewProjectPage.createNewProject()
-        cy.readUserData().then((user) => {
+        cy.readUserData('userInfo.json').then((user) => {
             cy.url().should('eq', `https://gitlab.testautomate.me/${user.userName}/${projectName}`)
         })
+        projectDetailsPage.checkProjectName(projectName)
+        projectDetailsPage.checkProjectAlertCreation(projectName)
     })
 
     it('validate project name has already taken', () => {

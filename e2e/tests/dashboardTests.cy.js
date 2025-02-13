@@ -1,4 +1,4 @@
-import DashboardPage from "../../support/pageObjects/DashboardPage"
+import DashboardPage from "../../support/pageObjects/pages/DashboardPage"
 
 describe('dashboard tests', () => {
 

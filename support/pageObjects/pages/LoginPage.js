@@ -28,16 +28,8 @@ class LoginPage {
         this.elements.registerUserButton().click()
     }
 
-    /*getUserNameValidation(validation){
-        return this.elements.userName().nextUntil(`*:contains("${validation}"))`)
-    }*/
-
     getBasicValidation(){
         return this.elements.invalidDataMessage()
-    }
-
-    redirectToWelcomePage(){
-        
     }
 }
 

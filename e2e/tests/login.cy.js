@@ -1,9 +1,10 @@
-import LoginPage from "../../support/pageObjects/LoginPage"
+import LoginPage from "../../support/pageObjects/pages/LoginPage"
 
 describe ('log in page', () => {
   const loginPage = new LoginPage()
 
   beforeEach(() => {
+    cy.create
     loginPage.visit()
   })
 
@@ -17,9 +18,15 @@ describe ('log in page', () => {
 
   })
 
-  it('user successfully logged in', () => {
+  /*it('user successfully logged in (WEB user)', () => {
     cy.loginUser()
     cy.url().should('include', 'users/sign_up/welcome')
+
+  })*/
+
+  it('user successfully logged in (API user)', () => {
+    cy.loginUser('userInfo.json')
+    cy.url().should('eq', 'https://gitlab.testautomate.me/users/sign_up/welcome')
 
   })
 

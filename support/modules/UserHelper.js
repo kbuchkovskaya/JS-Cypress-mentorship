@@ -2,8 +2,8 @@ import UserModel from "./UserModel";
 
 class UserHelper {
 
-    writeToFile(content) {
-        const filename = 'userInfo.json';
+    writeToFile(filename, content) {
+        //const filename = 'userInfo.json';
         cy.task('writeFileToFixtures', { filename, content });
     }
 
@@ -22,6 +22,12 @@ class UserHelper {
         return user; 
       }        
     )}
+
+    /*clearFile(filename) {
+      cy.task('clearFileContent', filename).then((message) => {
+        cy.log(message);
+    }) 
+    }*/
 }
 
 export default UserHelper;

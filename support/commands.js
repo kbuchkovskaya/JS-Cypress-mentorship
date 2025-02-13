@@ -26,52 +26,62 @@
 
 import UserHelper from "./modules/UserHelper"
 import UserModel from "./modules/UserModel"
-import Header from "./pageObjects/Header"
-import LoginPage from "./pageObjects/LoginPage"
-import RegistrationPage from "./pageObjects/RegistrationPage"
-import WelcomePage from "./pageObjects/WelcomePage"
+import Header from "./pageObjects/sections/Header"
+import LoginPage from "./pageObjects/pages/LoginPage"
+import RegistrationPage from "./pageObjects/pages/RegistrationPage"
+import WelcomePage from "./pageObjects/pages/WelcomePage"
+import CreateNewProjectPage from "./pageObjects/pages/CreateNewProjectPage"
+import CreateGroupPage from "./pageObjects/pages/CreateGroupPage"
+import ProjectMenu from "./pageObjects/sections/ProjectMenu"
+import GroupPage from "./pageObjects/pages/GroupPage"
+import IssuesPage from "./pageObjects/pages/IssuesPage"
+import MembersPage from "./pageObjects/pages/MembersPage"
+import GroupNavigation from "./pageObjects/sections/GroupNavigation"
+
+import 'dotenv/config'
+import { use } from "chai"
+import IssueDeailsPage from "./pageObjects/pages/IssueDetailsPage"
+//import { use } from "chai"
 
 require('cypress-xpath');
 
+const { faker } = require('@faker-js/faker');
+
 //supportFile: 'cypress/support/e2e/js'
 
-Cypress.Commands.add('createUserData', () => {
+Cypress.Commands.add('createUserData', (filename) => {
+    //cy.clearUserData()
+
     const userHelper = new UserHelper()
-
-    cy.task('clearFileContent', { filename: 'userInfo.json' }).then((message) => {
-        cy.log(message);
-    })
-
     let userModel = new UserModel()
-    const userData = JSON.stringify(userModel, null, 1);  // Stringify data
-    userHelper.writeToFile(userData);  // Write to file
-    cy.wait(1000)
 
-    cy.readUserData()
+    const userData = JSON.stringify(userModel, null, 1);  // Stringify data
+    userHelper.writeToFile(filename, userData);  // Write to file
+    cy.wait(1000)
 })
 
-Cypress.Commands.add('readUserData', () => {
+Cypress.Commands.add('readUserData', (filename) => {
     const userHelper = new UserHelper()
     let userModel
 
-    return userHelper.readFromFile('userInfo.json') // Read the file
+    return userHelper.readFromFile(filename) // Read the file
         .then((user) => {
             userModel = user;
     })
 })
 
-Cypress.Commands.add('clearUserData', () => {
-    cy.task('clearFileContent', { filename: 'userInfo.json' }).then((message) => {
-        cy.log(message);
-    })
-})
+/*Cypress.Commands.add('clearUserData', (filename) => {
+    const userHelper = new UserHelper()
 
-Cypress.Commands.add('userRegistration', () => {
+    userHelper.clearFile(filename)
+})*/
+
+Cypress.Commands.add('userRegistration', (filename) => {
     const registrationPage = new RegistrationPage()
 
-    cy.createUserData()
+    cy.createUserData(filename)
 
-    cy.readUserData()
+    cy.readUserData(filename)
         .then((user) => {
             registrationPage.visit()
             registrationPage.fillFirstName(user.firstName)
@@ -83,10 +93,10 @@ Cypress.Commands.add('userRegistration', () => {
         })
 })
 
-Cypress.Commands.add('loginUser', ()  => {
+Cypress.Commands.add('loginUser', (filename)  => {
     const loginPage = new LoginPage()
     
-    cy.readUserData()
+    cy.readUserData(filename)
         .then((user) => {
             loginPage.visit()
             loginPage.fillUserName(user.userName)
@@ -103,6 +113,57 @@ Cypress.Commands.add('welcomePageVerification', () => {
     welcomePage.clickGetStarted()
 })
 
+Cypress.Commands.add('createProject', (projectName) => {
+    const createProjectPage = new CreateNewProjectPage()
+    const groupPage = new GroupPage()
+    
+    groupPage.createNewProject()
+
+    createProjectPage.openCreateBlankProjectWizard()
+    createProjectPage.enterProjectName(projectName)
+    createProjectPage.createNewProject()
+    
+})
+
+Cypress.Commands.add('createGroup', (groupName) => {
+    const createGroupPage = new CreateGroupPage()
+
+    createGroupPage.visit()
+    createGroupPage.openCreateGroupForm()
+    createGroupPage.enterGroupName(groupName)
+    createGroupPage.createGroup()
+})
+
+Cypress.Commands.add('addMemeberToGroup', (filename) => {
+    const groupNavigation = new GroupNavigation()
+    const membersPage = new MembersPage()
+
+    groupNavigation.hoverOverGroupInfoButton()
+    groupNavigation.openGroupMembers()
+
+    membersPage.openInvitemembersPopup()
+    cy.fixture(filename).then((userInfo) => {
+        membersPage.addMember(userInfo.firstName)
+    })
+})
+
+Cypress.Commands.add('createIssue', (issueName, filename) => {
+    const issuePage = new IssuesPage()
+    const issueDetailsPage = new IssueDeailsPage()
+    const projectMenu = new ProjectMenu()
+
+    projectMenu.openIssues()
+
+    issuePage.openNewIssueFrom()
+    issuePage.enterIssueTitle(issueName)
+    cy.fixture(filename).then((userInfo) => {
+        issuePage.assignIssueToTheUser(userInfo.firstName)
+        issuePage.createIssue()
+        issueDetailsPage.checkIssueAssignee(userInfo.userName)
+    })
+    
+})
+
 Cypress.Commands.add('signOut', () => {
     const header = new Header()
 
@@ -115,6 +176,34 @@ Cypress.on('uncaught:exception', (err) => {
         return false; // Ignore the error
     }
 });
+
+Cypress.Commands.add('сreateApiUser', (filename) => {
+    cy.createUserData(filename)
+    cy.readUserData(filename).then((user) => {
+        cy.request({
+            method: 'POST',
+            url: 'https://gitlab.testautomate.me/api/v4/users',
+            headers: {
+                //'Authorization' : `Bearer ${Cypress.env('adminApiToken')}`
+                'Authorization' : 'Bearer FKzy_BpV5wAybKf7Z9JX'
+                
+            },
+            body: {
+                "name": user.firstName,
+                "email" : user.email,
+                "username" : user.userName,
+                "password" : user.password,
+                "skip_confirmation" : "true"
+            }
+        }).then((response) => {
+            expect(response.status).to.eq(201)
+            //const id = response.body.id
+            cy.wrap(response.body.id).as('newUserId');
+            //userHelper.writeToFile(id)
+        })
+    })
+})
+
 
 
 

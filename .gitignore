@@ -401,4 +401,7 @@ system-tests/lib/validations
 .nx/cache
 .nx/workspace-data
 
+HEAD
 .DS_Store
+
+

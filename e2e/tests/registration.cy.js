@@ -1,13 +1,12 @@
 import truncate from 'truncate'
-import RegistrationPage from '../../support/pageObjects/RegistrationPage'
+import RegistrationPage from '../../support/pageObjects/pages/RegistrationPage'
 
 describe('user registration', () => {
     const registrationPage = new RegistrationPage()
     let userModel 
 
     before(() => {
-        //cy.createUserData()
-        cy.readUserData()
+        cy.readUserData('userInfo.json')
             .then((user) => {
                 userModel = user
             })
@@ -29,7 +28,7 @@ describe('user registration', () => {
     })
 
     it('user registered succesfully', () => {
-        cy.userRegistration()
+        cy.userRegistration('userInfo.json')
         cy.url().should('include', '/sign_up/welcome')
     })
 
