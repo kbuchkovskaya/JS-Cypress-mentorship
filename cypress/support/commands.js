@@ -184,8 +184,8 @@ Cypress.Commands.add('сreateApiUser', (filename) => {
             method: 'POST',
             url: 'https://gitlab.testautomate.me/api/v4/users',
             headers: {
-                //'Authorization' : `Bearer ${Cypress.env('adminApiToken')}`
-                'Authorization' : 'Bearer FKzy_BpV5wAybKf7Z9JX'
+                'Authorization' : `Bearer ${Cypress.env('adminApiToken')}`
+                //'Authorization' : 'Bearer FKzy_BpV5wAybKf7Z9JX'
                 
             },
             body: {
@@ -197,9 +197,7 @@ Cypress.Commands.add('сreateApiUser', (filename) => {
             }
         }).then((response) => {
             expect(response.status).to.eq(201)
-            //const id = response.body.id
-            cy.wrap(response.body.id).as('newUserId');
-            //userHelper.writeToFile(id)
+            //cy.wrap(response.body.id).as('newUserId');
         })
     })
 })
