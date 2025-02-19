@@ -137,6 +137,8 @@ cli/visual-snapshots
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
+.env.json
+
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
@@ -403,5 +405,7 @@ system-tests/lib/validations
 
 HEAD
 .DS_Store
+
+
 
 
