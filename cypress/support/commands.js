@@ -177,16 +177,14 @@ Cypress.on('uncaught:exception', (err) => {
     }
 });
 
-Cypress.Commands.add('сreateApiUser', (filename) => {
+Cypress.Commands.add('createApiUser', (filename) => {
     cy.createUserData(filename)
     cy.readUserData(filename).then((user) => {
         cy.request({
             method: 'POST',
             url: 'https://gitlab.testautomate.me/api/v4/users',
             headers: {
-                'Authorization' : `Bearer ${Cypress.env('adminApiToken')}`
-                //'Authorization' : 'Bearer FKzy_BpV5wAybKf7Z9JX'
-                
+                'Authorization' : `${Cypress.env('adminApiToken')}`  
             },
             body: {
                 "name": user.firstName,
@@ -197,7 +195,6 @@ Cypress.Commands.add('сreateApiUser', (filename) => {
             }
         }).then((response) => {
             expect(response.status).to.eq(201)
-            //cy.wrap(response.body.id).as('newUserId');
         })
     })
 })

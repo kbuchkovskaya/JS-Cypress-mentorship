@@ -16,8 +16,8 @@ describe('create an issue tests', () => {
     const issueDetailsPage = new IssueDeailsPage()
 
     before(() => {
-        cy.сreateApiUser('userInfo.json')
-        cy.сreateApiUser('user2.json')
+        cy.createApiUser('userInfo.json')
+        cy.createApiUser('user2.json')
         cy.loginUser('userInfo.json')
     })
 

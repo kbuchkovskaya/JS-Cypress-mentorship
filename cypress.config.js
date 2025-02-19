@@ -47,6 +47,6 @@ export default defineConfig({
       });
       return config;
     },
-    supportFile: "support/e2e.js", 
+    supportFile: "cypress/support/e2e.js", 
   } 
 });

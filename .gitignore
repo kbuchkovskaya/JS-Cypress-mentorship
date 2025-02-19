@@ -137,7 +137,7 @@ cli/visual-snapshots
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
-.env.json
+cypress.env.json
 
 # Gradle
 .idea/**/gradle.xml

@@ -7,7 +7,7 @@ describe('new group tests', () => {
     let groupName = faker.lorem.word()
 
     before(() => {
-        cy.сreateApiUser('userInfo.json')
+        cy.createApiUser('userInfo.json')
         cy.loginUser('userInfo.json')
     })
 

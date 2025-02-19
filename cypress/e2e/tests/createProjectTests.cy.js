@@ -11,7 +11,7 @@ describe('create project tests', () => {
     let projectName = faker.lorem.word()
 
     before(() => {
-        cy.сreateApiUser('userInfo.json')
+        cy.createApiUser('userInfo.json')
         
     })
 
