@@ -3,7 +3,6 @@ import UserModel from "./UserModel";
 class UserHelper {
 
     writeToFile(filename, content) {
-        //const filename = 'userInfo.json';
         cy.task('writeFileToFixtures', { filename, content });
     }
 

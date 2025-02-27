@@ -1,7 +1,7 @@
-import IssueDeailsPage from "../../support/pageObjects/pages/IssueDetailsPage"
-import IssuesPage from "../../support/pageObjects/pages/IssuesPage"
-import ProjectsPage from "../../support/pageObjects/pages/ProjectsPage";
-import ProjectMenu from "../../support/pageObjects/sections/ProjectMenu";
+import IssueDeailsPage from "../pageObjects/pages/IssueDetailsPage"
+import IssuesPage from "../pageObjects/pages/IssuesPage"
+import ProjectsPage from "../pageObjects/pages/ProjectsPage";
+import ProjectMenu from "../pageObjects/sections/ProjectMenu";
 
 const { faker, he } = require('@faker-js/faker');
 
@@ -38,8 +38,5 @@ describe('create an issue tests', () => {
         issuePage.openDefinedIssue(issueName)
         issueDetailsPage.closeIssue()
     })
-
-    /*it('close opened issue', () => {
-
-    })*/
+ 
 })

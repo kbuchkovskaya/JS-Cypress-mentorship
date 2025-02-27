@@ -1,4 +1,4 @@
-import GroupDetailsPage from "../../support/pageObjects/pages/GroupDetailsPage"
+import GroupDetailsPage from "../pageObjects/pages/GroupDetailsPage"
 const { faker } = require('@faker-js/faker');
 
 describe('new group tests', () => {

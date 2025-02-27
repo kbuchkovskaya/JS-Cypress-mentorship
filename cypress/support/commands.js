@@ -24,23 +24,23 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import UserHelper from "./modules/UserHelper"
-import UserModel from "./modules/UserModel"
-import Header from "./pageObjects/sections/Header"
-import LoginPage from "./pageObjects/pages/LoginPage"
-import RegistrationPage from "./pageObjects/pages/RegistrationPage"
-import WelcomePage from "./pageObjects/pages/WelcomePage"
-import CreateNewProjectPage from "./pageObjects/pages/CreateNewProjectPage"
-import CreateGroupPage from "./pageObjects/pages/CreateGroupPage"
-import ProjectMenu from "./pageObjects/sections/ProjectMenu"
-import GroupPage from "./pageObjects/pages/GroupPage"
-import IssuesPage from "./pageObjects/pages/IssuesPage"
-import MembersPage from "./pageObjects/pages/MembersPage"
-import GroupNavigation from "./pageObjects/sections/GroupNavigation"
+import UserHelper from "../e2e/modules/UserHelper"
+import UserModel from "../e2e/modules/UserModel"
+import Header from "../e2e/pageObjects/sections/Header"
+import LoginPage from "../e2e/pageObjects/pages/LoginPage"
+import RegistrationPage from "../e2e/pageObjects/pages/RegistrationPage"
+import WelcomePage from "../e2e/pageObjects/pages/WelcomePage"
+import CreateNewProjectPage from "../e2e/pageObjects/pages/CreateNewProjectPage"
+import CreateGroupPage from "../e2e/pageObjects/pages/CreateGroupPage"
+import ProjectMenu from "../e2e/pageObjects/sections/ProjectMenu"
+import GroupPage from "../e2e/pageObjects/pages/GroupPage"
+import IssuesPage from "../e2e/pageObjects/pages/IssuesPage"
+import MembersPage from "../e2e/pageObjects/pages/MembersPage"
+import GroupNavigation from "../e2e/pageObjects/sections/GroupNavigation"
 
 import 'dotenv/config'
 import { use } from "chai"
-import IssueDeailsPage from "./pageObjects/pages/IssueDetailsPage"
+import IssueDeailsPage from "../e2e/pageObjects/pages/IssueDetailsPage"
 //import { use } from "chai"
 
 require('cypress-xpath');
@@ -57,7 +57,6 @@ Cypress.Commands.add('createUserData', (filename) => {
 
     const userData = JSON.stringify(userModel, null, 1);  // Stringify data
     userHelper.writeToFile(filename, userData);  // Write to file
-    cy.wait(1000)
 })
 
 Cypress.Commands.add('readUserData', (filename) => {

@@ -1,12 +1,11 @@
-import CreateNewProjectPage from "../../support/pageObjects/pages/CreateNewProjectPage"
-import ProjectDetailsPage from "../../support/pageObjects/pages/ProjectDetailsPage";
-
-const { faker } = require('@faker-js/faker');
+import { faker } from '@faker-js/faker';
+import { default as CreateNewProjectPage } from '../pageObjects/pages/CreateNewProjectPage';
+import { default as ProjectDetailsPage } from '../pageObjects/pages/ProjectDetailsPage';
 
 describe('create project tests', () => {
 
     const createNewProjectPage = new CreateNewProjectPage()
-    const projectDetailsPage = new ProjectDetailsPage()
+    const projectDetailsPage =  new ProjectDetailsPage()
 
     let projectName = faker.lorem.word()
 

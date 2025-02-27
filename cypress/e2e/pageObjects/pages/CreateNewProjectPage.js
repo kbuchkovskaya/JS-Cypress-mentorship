@@ -37,15 +37,7 @@ class CreateNewProjectPage {
     }
 
     createNewProject() {
-        cy.get('#blank-project-pane', { timeout: 10000 }) // Wait for the container
-            .should('exist')
-            .within(() => {
-                this.elements.createProjectButton()
-                    .should('exist')
-                    .should('be.visible')
-                    .click(/*{ force: true }*/);
-            });
-            
+        this.elements.createProjectButton().click() 
     }
 
     getValidationMessage(validation) {
