@@ -44,5 +44,8 @@ describe('create project tests', () => {
         
     })
 
+    after(() => {
+        cy.clearUserData('userInfo.json')
+     })
 
 })

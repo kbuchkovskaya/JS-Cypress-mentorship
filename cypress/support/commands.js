@@ -69,11 +69,11 @@ Cypress.Commands.add('readUserData', (filename) => {
     })
 })
 
-/*Cypress.Commands.add('clearUserData', (filename) => {
+Cypress.Commands.add('clearUserData', (filename) => {
     const userHelper = new UserHelper()
 
     userHelper.clearFile(filename)
-})*/
+})
 
 Cypress.Commands.add('userRegistration', (filename) => {
     const registrationPage = new RegistrationPage()

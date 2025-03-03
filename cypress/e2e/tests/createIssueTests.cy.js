@@ -38,5 +38,10 @@ describe('create an issue tests', () => {
         issuePage.openDefinedIssue(issueName)
         issueDetailsPage.closeIssue()
     })
+
+    after(() => {
+        cy.clearUserData('userInfo.json')
+        cy.clearUserData('user2.json')
+     })
  
 })

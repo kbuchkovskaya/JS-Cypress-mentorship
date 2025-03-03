@@ -9,4 +9,8 @@ describe('welcome page tests', () => {
         cy.welcomePageVerification()
         cy.url().should('eq', 'https://gitlab.testautomate.me/dashboard/projects')
     })
+
+    after(() => {
+        cy.clearUserData('userInfo.json')
+     })
 })

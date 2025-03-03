@@ -22,11 +22,11 @@ class UserHelper {
       }        
     )}
 
-    /*clearFile(filename) {
-      cy.task('clearFileContent', filename).then((message) => {
+    clearFile(filename) {
+      cy.task('clearFileContent', { filename }).then((message) => {
         cy.log(message);
     }) 
-    }*/
+    }
 }
 
 export default UserHelper;

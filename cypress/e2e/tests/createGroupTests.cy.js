@@ -1,3 +1,4 @@
+import UserHelper from "../modules/UserHelper";
 import GroupDetailsPage from "../pageObjects/pages/GroupDetailsPage"
 const { faker } = require('@faker-js/faker');
 
@@ -15,5 +16,9 @@ describe('new group tests', () => {
         cy.createGroup(groupName)
         groupDatilsPage.checkGroupName(groupName)
         groupDatilsPage.checkGroupCreationAlert(groupName)
+    })
+
+    after(() => {
+       cy.clearUserData('userInfo.json')
     })
 })

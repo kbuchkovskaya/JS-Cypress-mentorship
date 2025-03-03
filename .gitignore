@@ -137,6 +137,8 @@ cli/visual-snapshots
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
+
+#env data
 cypress.env.json
 
 # Gradle
@@ -411,9 +413,4 @@ HEAD
 /allure-report/
 /allure-results/
 /cypress/screenshots/
-
-# registered user data
-cypress/fixtures/userInfo.json
-cypress/fixtures/user2.json
-
 
