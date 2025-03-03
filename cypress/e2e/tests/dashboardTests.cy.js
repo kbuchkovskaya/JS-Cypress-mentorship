@@ -1,11 +1,11 @@
-import DashboardPage from "../../support/pageObjects/pages/DashboardPage"
+import DashboardPage from "../pageObjects/pages/DashboardPage"
 
 describe('dashboard tests', () => {
 
     const dashboardPage = new DashboardPage()
 
     before(() => {
-        cy.userRegistration()
+        cy.userRegistration('userInfo.json')
         cy.welcomePageVerification()
     })
 

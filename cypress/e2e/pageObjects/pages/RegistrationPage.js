@@ -50,7 +50,7 @@ class RegistrationPage {
     }
 
     fillPassword(password){
-        this.elements.passwordInput().type(password)
+        this.elements.passwordInput().focus().type(password)
     }
 
     registerAction(){

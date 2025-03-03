@@ -1,5 +1,6 @@
 import { writeFile, readFile } from 'fs';
 import { defineConfig } from "cypress";
+import { allureCypress } from "allure-cypress/reporter";
 
 export default defineConfig({
   e2e: {
@@ -44,9 +45,14 @@ export default defineConfig({
             });
           });
         },
+        
+      });
+      allureCypress(on, config, {
+        resultsDir: "allure-results",
       });
       return config;
     },
+    
     supportFile: "cypress/support/e2e.js", 
   } 
 });

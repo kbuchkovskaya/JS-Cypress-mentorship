@@ -1,5 +1,6 @@
 import truncate from 'truncate'
-import RegistrationPage from '../../support/pageObjects/pages/RegistrationPage'
+import RegistrationPage from '../pageObjects/pages/RegistrationPage'
+
 
 describe('user registration', () => {
     const registrationPage = new RegistrationPage()
