@@ -412,4 +412,8 @@ HEAD
 /allure-results/
 /cypress/screenshots/
 
+# registered user data
+cypress/fixtures/userInfo.json
+cypress/fixtures/user2.json
+
 
