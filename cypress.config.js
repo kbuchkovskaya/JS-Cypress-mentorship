@@ -1,4 +1,4 @@
-import { writeFile, readFile } from 'fs';
+import { writeFile, readFile } from 'fs/promises';
 import { defineConfig } from "cypress";
 import { allureCypress } from "allure-cypress/reporter";
 
@@ -8,51 +8,52 @@ export default defineConfig({
       // Register custom tasks
       on('task', {
         // Task to write content to a file
-        writeFileToFixtures({ filename, content }) {
+        async writeFileToFixtures({ filename, content }) {
           const filePath = `cypress/fixtures/${filename}`;
-          return new Promise((resolve, reject) => {
-            writeFile(filePath, content, (err) => {
-              if (err) {
-                return reject(err);
-              }
-              resolve(`File written successfully to ${filePath}`);
-            });
-          });
+          try {
+            await writeFile(filePath, content);
+            return `File written successfully to ${filePath}`;
+          } catch (err) {
+            throw new Error(`Failed to write file: ${err.message}`);
+          }
         },
 
-        //to read
-        readFileFromFixtures({ filename }) {
+        // Task to read file content
+        async readFileFromFixtures({ filename }) {
           const filePath = `cypress/fixtures/${filename}`;
-          return new Promise((resolve, reject) => {
-            readFile(filePath, 'utf8', (err, data) => {
-              if (err) {
-                return reject(err);
-              }
-              resolve(data); // Return file content
-            });
-          });
+          try {
+            return await readFile(filePath, 'utf8');
+          } catch (err) {
+            throw new Error(`Failed to read file: ${err.message}`);
+          }
         },
 
         // Task to clear file content
-        clearFileContent({ filename }) {
+        async clearFileContent({ filename }) {
           const filePath = `cypress/fixtures/${filename}`;
-          return new Promise((resolve, reject) => {
-            writeFile(filePath, '', (err) => { // Overwrite with empty content
-              if (err) {
-                return reject(err);
-              }
-              resolve(`File content cleared successfully in ${filePath}`);
-            });
-          });
+          try {
+            await writeFile(filePath, ''); // Overwrite with empty content
+            return `File content cleared successfully in ${filePath}`;
+          } catch (err) {
+            throw new Error(`Failed to clear file: ${err.message}`);
+          }
         },
-        
       });
+
+      // Configure Allure Reporter
       allureCypress(on, config, {
         resultsDir: "allure-results",
       });
+
       return config;
     },
     
     supportFile: "cypress/support/e2e.js", 
-  } 
+  },
+
+  reporter: "mocha-junit-reporter",
+  reporterOptions: {
+    mochaFile: "results/test-results-[hash].xml",
+    toConsole: true
+  }
 });

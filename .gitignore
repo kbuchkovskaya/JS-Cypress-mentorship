@@ -409,8 +409,11 @@ HEAD
 .DS_Store
 
 
-# allure report
+## test reports
+#cypress
 /allure-report/
 /allure-results/
 /cypress/screenshots/
+#junit
+/results/
 

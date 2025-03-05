@@ -13,4 +13,8 @@ describe('dashboard tests', () => {
         dashboardPage.openCreateProjectPage()
         cy.url().should('eq', 'https://gitlab.testautomate.me/projects/new')
     })
+
+    after(() => {
+        cy.clearUserData('userInfo.json')
+     })
 })

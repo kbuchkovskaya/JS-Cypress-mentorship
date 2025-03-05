@@ -28,4 +28,8 @@ describe ('log in page', () => {
     cy.url().should('eq', 'https://gitlab.testautomate.me/users/sign_up')
   })
 
+  after(() => {
+    cy.clearUserData('userInfo.json')
+ })
+
 })

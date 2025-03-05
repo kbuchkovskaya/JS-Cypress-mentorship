@@ -62,4 +62,8 @@ describe('user registration', () => {
         })
     })
 
+    after(() => {
+        cy.clearUserData('userInfo.json')
+     })
+
 })

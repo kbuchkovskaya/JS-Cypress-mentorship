@@ -1,0 +1,17 @@
+{
+  "name": "cypressprojectcopy",
+  "version": "1.0.0",
+  "main": "cypress.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "allure-cypress": "^3.2.0",
+    "cypress": "^14.1.0",
+    "mocha-junit-reporter": "^2.2.1"
+  }
+}
