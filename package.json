@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint cypress/**/*.js",
     "lint:fix": "eslint cypress/**/*.js --fix",
-    "prepare": "husky"
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,10 @@
     "eslint": "^9.22.0",
     "eslint-plugin-cypress": "^4.2.0",
     "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
     "mocha-junit-reporter": "^2.2.1"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": "eslint --fix"
   }
 }
