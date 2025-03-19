@@ -3,6 +3,10 @@ import LoginPage from "../pageObjects/pages/LoginPage"
 describe ('log in page', () => {
   const loginPage = new LoginPage()
 
+  before(() => {
+    cy.createApiUser('userInfo.json')
+  })
+
   beforeEach(() => {
     loginPage.visit()
   })

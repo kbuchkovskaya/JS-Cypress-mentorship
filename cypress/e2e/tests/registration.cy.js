@@ -7,6 +7,7 @@ describe('user registration', () => {
     let userModel 
 
     before(() => {
+        cy.createUserData('userInfo.json')
         cy.readUserData('userInfo.json')
             .then((user) => {
                 userModel = user

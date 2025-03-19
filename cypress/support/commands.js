@@ -39,19 +39,9 @@ import MembersPage from "../e2e/pageObjects/pages/MembersPage"
 import GroupNavigation from "../e2e/pageObjects/sections/GroupNavigation"
 
 import 'dotenv/config'
-import { use } from "chai"
 import IssueDeailsPage from "../e2e/pageObjects/pages/IssueDetailsPage"
-//import { use } from "chai"
-
-require('cypress-xpath');
-
-const { faker } = require('@faker-js/faker');
-
-//supportFile: 'cypress/support/e2e/js'
 
 Cypress.Commands.add('createUserData', (filename) => {
-    //cy.clearUserData()
-
     const userHelper = new UserHelper()
     let userModel = new UserModel()
 
