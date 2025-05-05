@@ -24,4 +24,7 @@ on:
 
     - name: Run Cypress tests
       uses: cypress-io/github-action@v6
+      with:
+        start: npm start
+        wait-on: 'http://localhost:5173'
      
