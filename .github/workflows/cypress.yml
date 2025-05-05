@@ -22,6 +22,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Create dummy index.html for Vite
+        run: |
+          echo '<!DOCTYPE html><html><body>OK</body></html>' > index.html
+
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:

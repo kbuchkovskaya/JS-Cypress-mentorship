@@ -420,3 +420,6 @@ HEAD
 #husky
 /.husky/
 
+#git actions
+#index.html for Vite 
+index.html
