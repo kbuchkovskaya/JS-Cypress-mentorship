@@ -18,5 +18,8 @@ import './commands';
 import 'allure-cypress';
 import 'cypress-xpath';
 
+import 'cypress-real-events/support'
+import 'dotenv/config'
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
