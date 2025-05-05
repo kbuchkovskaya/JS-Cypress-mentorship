@@ -173,7 +173,7 @@ Cypress.Commands.add('createApiUser', (filename) => {
             method: 'POST',
             url: 'https://gitlab.testautomate.me/api/v4/users',
             headers: {
-                'Authorization' : `${Cypress.env('adminApiToken')}`  
+                'Authorization' : `${Cypress.env('GITLAB_API_TOKEN')}`  
             },
             body: {
                 "name": user.firstName,
