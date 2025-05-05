@@ -4,6 +4,7 @@
   "main": "cypress.config.js",
   "type": "module",
   "scripts": {
+    "start": "echo 'Cypress runs using the built-in test server'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint cypress/**/*.js",
     "lint:fix": "eslint cypress/**/*.js --fix",
