@@ -4,7 +4,7 @@
   "main": "cypress.config.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
+    "start": "vite",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint cypress/**/*.js",
     "lint:fix": "eslint cypress/**/*.js --fix",
@@ -22,7 +22,8 @@
     "eslint-plugin-cypress": "^4.2.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
-    "mocha-junit-reporter": "^2.2.1"
+    "mocha-junit-reporter": "^2.2.1",
+    "vite": "^6.3.5"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": "eslint --fix"
