@@ -180,7 +180,7 @@ Cypress.Commands.add('createApiUser', (filename) => {
                 "email" : user.email,
                 "username" : user.userName,
                 "password" : user.password,
-                "skip_confirmation" : "true"
+                "skip_confirmation" : true
             }
         }).then((response) => {
             expect(response.status).to.eq(201)
