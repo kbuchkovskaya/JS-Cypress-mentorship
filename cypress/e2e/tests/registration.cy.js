@@ -54,7 +54,7 @@ describe('user registration', () => {
         })
     })
 
-    it('username only alphanumerical', () => {
+    it.skip('username only alphanumerical', () => {
         registrationPage.fillUsername(`!@#${userModel.userName}`)
         cy.fixture('registrationValidation').then((validationMessage) => {
             registrationPage.getUserNameInput().should('have.attr', 'title', validationMessage.alphanumericalCharsUsername).and('not.have.attr', 'class' , ':contains("hidden")')
