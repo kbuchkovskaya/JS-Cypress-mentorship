@@ -166,6 +166,7 @@ Cypress.on('uncaught:exception', (err) => {
     }
 });
 
+const token = Cypress.env('GITLAB_API_TOKEN');
 Cypress.Commands.add('createApiUser', (filename) => {
     cy.createUserData(filename)
     cy.readUserData(filename).then((user) => {
@@ -173,7 +174,7 @@ Cypress.Commands.add('createApiUser', (filename) => {
             method: 'POST',
             url: 'https://gitlab.testautomate.me/api/v4/users',
             headers: {
-                'Authorization' : `${Cypress.env('GITLAB_API_TOKEN')}`  
+                'Authorization' : token  
             },
             body: {
                 "name": user.firstName,
