@@ -5,6 +5,7 @@ import { allureCypress } from "allure-cypress/reporter";
 export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
+      config.env.GITLAB_API_TOKEN = process.env.GITLAB_API_TOKEN;
       // Register custom tasks
       on('task', {
         // Task to write content to a file
@@ -56,4 +57,5 @@ export default defineConfig({
     mochaFile: "results/test-results-[hash].xml",
     toConsole: true
   }
+
 });

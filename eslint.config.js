@@ -24,7 +24,8 @@ export default [
         before: "readonly",
         beforeEach: "readonly",
         after: "readonly",
-        afterEach: "readonly"
+        afterEach: "readonly",
+        process: "readonly"
       }
     },
     rules: {
