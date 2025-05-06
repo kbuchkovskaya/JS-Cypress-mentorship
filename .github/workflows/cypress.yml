@@ -10,9 +10,6 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
 
-    env:
-        GITLAB_API_TOKEN: ${{ secrets.GITLAB_API_TOKEN }}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -38,7 +35,8 @@ jobs:
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
+        env:
+          GITLAB_API_TOKEN: ${{ secrets.GITLAB_API_TOKEN }}
         with:
           start: npm start
           wait-on: 'http://localhost:5173'
-      
