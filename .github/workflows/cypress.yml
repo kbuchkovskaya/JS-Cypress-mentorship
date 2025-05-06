@@ -29,6 +29,9 @@ jobs:
         run: |
           echo '<!DOCTYPE html><html><body>OK</body></html>' > index.html
 
+      - name: Print all environment variables
+        run: printenv
+
       - name: Print GitLab API Token (for debugging)
         run: | 
           echo "GitLab API Token: $GITLAB_API_TOKEN"
